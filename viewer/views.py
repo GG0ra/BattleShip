@@ -7,6 +7,9 @@ import datetime # <=== ZMIANA
 
 
 from logging import getLogger
+
+from viewer.models import Test
+
 LOGGER = getLogger()
 
 from django.contrib.auth.decorators import login_required # <=NOWE
@@ -26,4 +29,5 @@ def generate_demo(request):
 
 class TestView(LoginRequiredMixin, ListView):
     template_name = 'test.html'
+    model = Test
 
