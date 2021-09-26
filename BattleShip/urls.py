@@ -35,4 +35,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', SelectView.as_view(), name='index'),
     path('game/', GameView.as_view(), name='game'),
-]
+    path('select/', GameView.as_view(), name='select'),
+    path('account/', GameView.as_view(), name='account')
+    ]
