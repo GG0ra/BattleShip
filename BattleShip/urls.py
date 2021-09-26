@@ -15,5 +15,8 @@ urlpatterns = [
     path('accounts/login/', SubmittableLoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
 
+    path('sign-up/', SignUpView.as_view(), name='sign_up'),
+
     path('admin/', admin.site.urls),
+    path('', TestView.as_view(), name='index'),
 ]
