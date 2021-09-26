@@ -8,7 +8,7 @@ import datetime # <=== ZMIANA
 
 from logging import getLogger
 
-from viewer.models import Test
+from viewer.models import Select, Game
 
 LOGGER = getLogger()
 
@@ -27,7 +27,12 @@ def generate_demo(request):
     )
 
 
-class TestView(LoginRequiredMixin, ListView):
-    template_name = 'test.html'
-    model = Test
+class SelectView(LoginRequiredMixin, ListView):
+    template_name = 'select.html'
+    model = Select
+
+
+class GameView(LoginRequiredMixin, ListView):
+    template_name = 'game.html'
+    model = Game
 

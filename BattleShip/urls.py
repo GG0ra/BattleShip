@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from viewer.views import TestView
+from viewer.views import SelectView, GameView
 
 from viewer.views import generate_demo
 
@@ -33,5 +33,6 @@ urlpatterns = [
     path('sign-up/', SignUpView.as_view(), name='sign_up'),
 
     path('admin/', admin.site.urls),
-    path('', TestView.as_view(), name='index'),
+    path('', SelectView.as_view(), name='index'),
+    path('game/', GameView.as_view(), name='game'),
 ]
