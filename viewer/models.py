@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Model
+from django.db.models import Model, CharField
 
 # Create your models here.
 class Select(Model):
@@ -7,3 +7,4 @@ class Select(Model):
 
 class Game(Model):
     title='nic'
+
