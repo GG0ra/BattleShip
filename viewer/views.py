@@ -1,14 +1,18 @@
+import random
+import string
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views import View
-from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 import datetime # <=== ZMIANA
 
 
 from logging import getLogger
 
-from viewer.models import Select, Game
+from viewer.models import Select, Game, Room
 
 LOGGER = getLogger()
 
@@ -32,7 +36,23 @@ class SelectView(LoginRequiredMixin, ListView):
     model = Select
 
 
-class GameView(LoginRequiredMixin, ListView):
-    template_name = 'game.html'
-    model = Game
+class GameCreateView(LoginRequiredMixin, View):
+    def get(self, request):
+        code = "".join(random.choices(string.ascii_uppercase, k=6))
+        Room.objects.create(room_number=code, user1=request.user)
+        return HttpResponseRedirect(reverse('game', kwargs={'game_code':code}))
 
+
+class GameView(LoginRequiredMixin, View):
+    def get(self, request, game_code):
+        room = Room.objects.filter(room_number=game_code).first()
+        if request.user.id == room.user1.id:
+            pass
+        elif room.user2 == None:
+            room.user2 = request.user
+        elif room.user2.id == request.user.id:
+            pass
+        else:
+            raise('Nie możesz dołączyć, bo w pokoju jest już dwoje graczy!')
+        return render(request, template_name='game.html',
+                      context={})
