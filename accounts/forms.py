@@ -13,7 +13,7 @@ class SignUpForm(UserCreationForm):
         fields = ['username', 'first_name']
 
     biography = CharField(
-        label='Opowiedz o sobie', widget=Textarea, min_length=30
+        label='Opowiedz o sobie', widget=Textarea
     ) #<===NOWE
 
     @atomic

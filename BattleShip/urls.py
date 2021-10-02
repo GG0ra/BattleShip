@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from viewer.views import SelectView, GameView
+from viewer.views import SelectView, GameCreateView, GameView
 
 from viewer.views import generate_demo
 
@@ -34,7 +34,8 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('', SelectView.as_view(), name='index'),
-    path('game/', GameView.as_view(), name='game'),
-    path('select/', GameView.as_view(), name='select'),
-    path('account/', GameView.as_view(), name='account')
+    path('game/', GameCreateView.as_view(), name='create_game'),
+    path('game/<game_code>', GameView.as_view(), name='game'),
+    path('select/', GameCreateView.as_view(), name='select'),
+    path('account/', GameCreateView.as_view(), name='account')
     ]
