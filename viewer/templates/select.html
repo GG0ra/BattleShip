@@ -9,5 +9,13 @@
     <strong>Najlepsza Gra Wszechczasów!!!</strong><br>
     <a  href="{% url 'create_game' %}"><button type="button" class="btn btn-primary btn-lg">Zagraj!</button></a>
 
+    <form action="{% url "game" %}" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <input type="text" name="game_code" placeholder="Wprowadź kod pokoju gry">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2" value="Submit">Dołącz</button>
+        </div>
+    </form>
+
 
 {% endblock %}

@@ -35,6 +35,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', SelectView.as_view(), name='index'),
     path('game/', GameCreateView.as_view(), name='create_game'),
+    # path('gamejoin/<game_code>', GameJoinView.as_view(), name='game_join'),
     path('game/<game_code>', GameView.as_view(), name='game'),
     path('select/', GameCreateView.as_view(), name='select'),
     path('account/', GameCreateView.as_view(), name='account')
