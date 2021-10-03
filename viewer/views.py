@@ -44,12 +44,12 @@ class GameCreateView(LoginRequiredMixin, View):
         return HttpResponseRedirect(reverse('game', kwargs={'game_code': code}))
 
 
-# class GameJoinView(LoginRequiredMixin, View):
-#     context = {}
-#     def get(self, request):
-#         # if request.method == 'POST':
-#         code = request.POST.get('game_code')
-#         return HttpResponseRedirect(reverse('game', kwargs={'game_code': code}))
+class GameJoinView(LoginRequiredMixin, View):
+    context = {}
+    def post(self, request):
+        if request.method == 'POST':
+            code = request.POST.get('room_code')
+            return HttpResponseRedirect(reverse('game', kwargs={'game_code': code}))
 
 
 class GameView(LoginRequiredMixin, View):
