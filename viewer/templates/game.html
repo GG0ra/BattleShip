@@ -4,6 +4,54 @@
     BattleShip
 {% endblock %}
 
+    <style>
+          body {
+            background: black;
+          }
+          div#board{
+            position: relative;
+            width: 1024px;
+            height: 863px;
+            margin: auto;
+            background: url("board.jpg") no-repeat;
+          }
+          div#messageArea {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            color: rgb(83, 175, 19);
+            font-size: 2em;
+          }
+          form {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            padding: 15px;
+            background-color: rgb(83, 175, 19);
+          }
+          form input {
+            background-color: rgb(152, 207, 113);
+            border-color: rgb(83, 175, 19);
+            font-size: 2em;
+          }
+          table {
+            position: absolute;
+            left: 173px;
+            top: 98px;
+            border-spacing: 0px;
+          }
+          td {
+            width: 94px;
+            height: 94px;
+          }
+          .hit {
+            background: url("ship.png") no-repeat center center;
+          }
+          .miss {
+            background: url("miss.png") no-repeat center center;
+          }
+    </style>
+
 {% block content %}
     <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Witaj w pokoju gry!</h4>
@@ -14,7 +62,8 @@
     </div>
     <a  href="{% url 'index' %}"><button type="button" class="btn btn-primary btn-lg">Wróć!</button></a>
 
-    <table class="table">
+    <div id="board">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -35,9 +84,9 @@
                 <th scope="row">1</th>
                 <td><input class="form-check-input" type="checkbox" value="0" id="field_A1">
                     <label class="form-check-label" for="flexCheckDefault">A1</label></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>id</td>
+                <td>id</td>
+                <td>id</td>
                 <td>id</td>
                 <td>id</td>
                 <td>id</td>
@@ -47,8 +96,8 @@
             </tr>
             <tr>
                 <th scope="row">2</th>
-                <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="..."></td>
-                <td>id</td>
+                <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="A2"></td>
+                <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="B2"></td>
                 <td>id</td>
                 <td>id</td>
                 <td>id</td>
@@ -60,8 +109,7 @@
             </tr>
             <tr>
                 <th scope="row">3</th>
-                <td><input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
-                    <label class="btn btn-outline-secondary" for="btn-check-2-outlined">Checked</label><br></td>
+                <td>id</td>
                 <td>id</td>
                 <td>id</td>
                 <td>id</td>
@@ -165,6 +213,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
     <div class="form-check">
         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
@@ -183,7 +232,7 @@
         </label>
     </div>
 
-    <div id="board">
+    <div id="nn">
       <div id="messageArea"></div>
       <table>
         <tr>
