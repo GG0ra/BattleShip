@@ -5,10 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    <div class="alert alert-success" role="alert">
+
+    <div class="alert alert-success" role="alert" xmlns="http://www.w3.org/1999/html">
         <h4 class="alert-heading">Witaj w pokoju gry!</h4>
         <p>Utwórz pole bitwy.</p>
-        <p>Zaproś znajomego podająć ten kod: </p>{{ game_code }}
+        <p>Zaproś znajomego podająć ten kod: <b><a id="kod"></a></b>
+            <script>
+            document.getElementById("kod").innerHTML = window.location.href.slice(-6);
+            </script>
+        </p>
         <hr>
         <p class="mb-0">Możesz też opuścić pokój... i przegrać!</p>
     </div>
