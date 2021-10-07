@@ -13,6 +13,72 @@
         <p class="mb-0">Możesz też opuścić pokój... i przegrać!</p>
     </div>
 
+
+<script type="text/javascript">
+/*
+   Checkbox Check Limiting
+   Version 1.0
+   September 6, 2010
+
+   Will Bontrager
+   https://www.willmaster.com/
+   Copyright 2010 Bontrager Connection, LLC
+
+   Bontrager Connection, LLC grants you
+   a royalty free license to use or modify
+   this software provided this notice appears
+   on all copies. This software is provided
+   "AS IS," without a warranty of any kind.
+*/
+
+function CountChecks(whichlist,maxchecked,latestcheck) {
+// An array containing the id of each checkbox to monitor.
+//   List the id of each checkbox in the set. If more than
+//   one set, list other sets in their own arrays. The
+//   array name to use is passed to this function.
+
+var board = new Array("A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "C1", "C2", "C3", "C4", "C5", "C6");
+
+// End of customization.
+var iterationlist;
+eval("iterationlist="+whichlist);
+var count = 0;
+for( var i=0; i<iterationlist.length; i++ ) {
+   if( document.getElementById(iterationlist[i]).checked == true) { count++; }
+   if( count > maxchecked ) { latestcheck.checked = false; }
+   }
+if( count > maxchecked ) {
+   alert('Sorry, only ' + maxchecked + ' may be checked.');
+   }
+}
+</script>
+
+
+<p>
+    Check up to 5 fields:<br>
+    <input id='A1' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='A2' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='A3' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='A4' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='A5' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='A6' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)"></br>
+    <input id='B1' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='B2' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='B3' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='B4' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='B5' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='B6' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)"></br>
+    <input id='C1' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='C2' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='C3' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='C4' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='C5' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+    <input id='C6' type="checkbox" name="boxsize[]" onclick="CountChecks('board',5,this)">
+</p>
+
+
+
+
     <a  href="{% url 'index' %}"><button type="button" class="btn btn-primary btn-lg">Wróć!</button></a>
 
 {% endblock %}
