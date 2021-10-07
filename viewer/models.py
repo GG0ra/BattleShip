@@ -22,7 +22,5 @@ class Room(Model):
     user2 = ForeignKey(User, on_delete=DO_NOTHING, related_name='user_player2', default=None, null=True)
 
 
-class Setup(Model):
-    room_number = ForeignKey(Room.room_number, on_delete=CASCADE, default=None)
 
 
