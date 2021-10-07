@@ -47,6 +47,7 @@ class GameCreateView(LoginRequiredMixin, View):
 
 class GameJoinView(LoginRequiredMixin, View):
     context = {}
+
     def post(self, request):
         if request.method == 'POST':
             code = request.POST.get('room_code')
