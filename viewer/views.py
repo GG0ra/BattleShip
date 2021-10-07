@@ -66,5 +66,5 @@ class GameView(LoginRequiredMixin, View):
             pass
         else:
             raise ('Nie możesz dołączyć, bo w pokoju jest już dwoje graczy!')
-        return render(request, template_name='game.html',
+        return render(request, template_name='setup.html',
                       context={})
