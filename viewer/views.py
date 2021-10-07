@@ -37,6 +37,7 @@ class SelectView(LoginRequiredMixin, ListView):
     model = Select
 
 
+
 class GameCreateView(LoginRequiredMixin, View):
     def get(self, request):
         code = "".join(random.choices(string.ascii_uppercase, k=6))
