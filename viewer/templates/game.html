@@ -4,273 +4,701 @@
     BattleShip
 {% endblock %}
 
-    <style>
-          body {
-            background: black;
-          }
-          div#board{
-            position: relative;
-            width: 1024px;
-            height: 863px;
-            margin: auto;
-            background: url("board.jpg") no-repeat;
-          }
-          div#messageArea {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            color: rgb(83, 175, 19);
-            font-size: 2em;
-          }
-          form {
-            position: absolute;
-            top: 0px;
-            right: 0px;
-            padding: 15px;
-            background-color: rgb(83, 175, 19);
-          }
-          form input {
-            background-color: rgb(152, 207, 113);
-            border-color: rgb(83, 175, 19);
-            font-size: 2em;
-          }
-          table {
-            position: absolute;
-            left: 173px;
-            top: 98px;
-            border-spacing: 0px;
-          }
-          td {
-            width: 94px;
-            height: 94px;
-          }
-          .hit {
-            background: url("ship.png") no-repeat center center;
-          }
-          .miss {
-            background: url("miss.png") no-repeat center center;
-          }
-    </style>
-
 {% block content %}
     <div class="alert alert-success" role="alert">
-        <h4 class="alert-heading">Witaj w pokoju gry!</h4>
-        <p>Utwórz pole bitwy.</p>
-        <p>Zaproś znajomego podająć ten kod <strong>code</strong></p>
+        <h4 class="alert-heading">Witaj w pokoju gry {{ room.user1 }}! </h4>
+        <p>Zaproś do pokoju gry znajomego podająć mu ten kod: {{ room.room_number }} </p>
+        <p>Utwórz swoje pole bitwy.</p>
         <hr>
-        <p class="mb-0">Możesz też opuścić pokój... i przegrać!</p>
+        <p>Możesz też opuścić pokój i... przegrać!</p>
+        <a  href="{% url 'index' %}"><button type="button" class="btn btn-primary btn-lg">Opuść grę!</button></a>
     </div>
-    <a  href="{% url 'index' %}"><button type="button" class="btn btn-primary btn-lg">Wróć!</button></a>
+    <br>
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="col-4">
+                <h3>Ustaw swoje statki: </h3>
+                <br>
+                <div class="align-items-left" style="width: 300px; height: 300px";>
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" id="field_A1" value="" aria-label="...">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                        <div class="col">
+                            <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+                        </div>
+                    </div>
+                    <br>
+                    <form method="post">
+                        {% csrf_token %}
+                            <h5>Gotowy?</h5>
+                            <input type="submit" value="Zaczynamy!!" class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div class="col-4">
+                <h3>Statki przeciwnika: </h3>
+                    <br>
+    <div class="align-items-left" style="width: 300px; height: 300px";>
+        <div class="row">
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+            <div class="col">
+                <input class="form-check-input" type="checkbox" value="0" id="field_A1">
+            </div>
+        </div><br>
+            </div><form method="post">
+        {% csrf_token %}
+        <p>
+            Potwierdź strzał "{{ field_id }}"
+        </p>
+        <input type="submit" value="Ognia!!" class="btn btn-danger">
+    </form>
+        </div>
 
-    <div id="board">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">A</th>
-                <th scope="col">B</th>
-                <th scope="col">C</th>
-                <th scope="col">D</th>
-                <th scope="col">E</th>
-                <th scope="col">F</th>
-                <th scope="col">G</th>
-                <th scope="col">H</th>
-                <th scope="col">I</th>
-                <th scope="col">J</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td><input class="form-check-input" type="checkbox" value="0" id="field_A1">
-                    <label class="form-check-label" for="flexCheckDefault">A1</label></td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="A2"></td>
-                <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="0" aria-label="B2"></td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td></td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-            </tr>
-            <tr>
-                <th scope="row">5</th>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-            </tr>
-            <tr>
-                <th scope="row">6</th>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-            </tr>
-            <tr>
-                <th scope="row">7</th>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-            </tr>
-            <tr>
-                <th scope="row">8</th>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-            </tr>
-            <tr>
-                <th scope="row">9</th>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-            </tr>
-            <tr>
-                <th scope="row">10</th>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-                <td>id</td>
-            </tr>
-        </tbody>
-    </table>
     </div>
 
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
-        Default radio
-        </label>
+</div>
+    <br>
+
+    <div class="container">
+
     </div>
-
-    <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
-    <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label>
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-        Default checkbox
-        </label>
-    </div>
-
-    <div id="nn">
-      <div id="messageArea"></div>
-      <table>
-        <tr>
-          <td id="00"></td><td id="01"></td><td id="02"></td><td id="03"></td>
-          <td id="04"></td><td id="05"></td><td id="06"></td>
-        </tr>
-        <tr>
-          <td id="10"></td><td id="11"></td><td id="12"></td><td id="13"></td>
-          <td id="14"></td><td id="15"></td><td id="16"></td>
-        </tr>
-        <tr>
-          <td id="20"></td><td id="21"></td><td id="22"></td><td id="23"></td>
-          <td id="24"></td><td id="25"></td><td id="26"></td>
-        </tr>
-        <tr>
-          <td id="30"></td><td id="31"></td><td id="32"></td><td id="33"></td>
-          <td id="34"></td><td id="35"></td><td id="36"></td>
-        </tr>
-        <tr>
-          <td id="40"></td><td id="41"></td><td id="42"></td><td id="43"></td>
-          <td id="44"></td><td id="45"></td><td id="46"></td>
-        </tr>
-        <tr>
-          <td id="50"></td><td id="51"></td><td id="52"></td><td id="53"></td>
-          <td id="54"></td><td id="55"></td><td id="56"></td>
-        </tr>
-        <tr>
-          <td id="60"></td><td id="61"></td><td id="62"></td><td id="63"></td>
-          <td id="64"></td><td id="65"></td><td id="66"></td>
-        </tr>
-      </table>
-      <form>
-        <input type="text" id="guessInput" placeholder="A0">
-        <input type="button" id="fireButton" value="Fire!">
-      </form>
-    </div>
-
-
+    </br>
 
 {% endblock %}
-
