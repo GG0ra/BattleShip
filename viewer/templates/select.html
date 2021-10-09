@@ -10,8 +10,10 @@
     </div>
         </br>
     <h1>Witaj w TurboSimpleBattleShips!</h1>
-    <strong>Najlepsza Gra Wszechczasów!!!</strong></br>
+    <strong>No gra</strong></br>
     <a  href="{% url 'create_game' %}"><button type="button" class="btn btn-primary btn-lg">Zagraj!</button></a></br>
+
+
     <form action="{% url "game_join" %}" method="post">
         {% csrf_token %}
         <div class="input-group mb-3">
@@ -19,4 +21,6 @@
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Dołącz</button>
         </div>
     </form>
+
+
 {% endblock %}

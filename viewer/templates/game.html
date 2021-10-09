@@ -6,55 +6,49 @@
 
 {% block content %}
     <div class="alert alert-success" role="alert" xmlns="http://www.w3.org/1999/html">
+
         <h4 class="alert-heading">Witaj w pokoju gry!</h4>
         <p>Utwórz pole bitwy.</p>
-        <p>Zaproś znajomego podająć ten kod: <b><a id="kod"></a></b>
-            <script>
-            document.getElementById("kod").innerHTML = window.location.href.slice(-6);
-            </script>
+        <p>Zaproś znajomego podająć ten kod: <b name="game_code">{{ game_code }}</b>
         </p>
         <hr>
         <p class="mb-0">Możesz też opuścić pokój... i przegrać!</p>
 
-    <table class="table">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            {% for i in columns %}
-                <th scope="col">{{ i }}</th>
-            {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for j in rows %}
-        <tr>
-            <th scope="row">{{ j }}</th>
-            {% for i in columns %}
-                <td><input id='field' type="checkbox" name="{{ i }}{{ j }}"></td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-    </div>
-        <a  href="{% url 'index' %}"><button type="button" class="btn btn-primary btn-lg">Opuść grę!</button></a>
-        {% csrf_token %}
-        <p>
-            Potwierdź strzał "{{ field_id }}"
-        </p>
-        <input type="submit" value="Ognia!!" class="btn btn-danger">
-    </form>
-        </div>
-
+        <form action="{% url 'layout' game_code %}" method="post" role="form">
+            {% csrf_token %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    {% for i in columns %}
+                        <th scope="col">{{ i }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for j in rows %}
+                    <tr>
+                        <th scope="row">{{ j }}</th>
+                        {% for i in columns %}
+                            <td><input id='field' type="checkbox" name="choices" value="{{ i }}{{ j }}"></td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <p>
+                Gotowe?
+            </p>
+            <input type="submit" value="Zatwierdź ustawienie" class="btn btn-danger">
+        </form>
     </div>
 
-</div>
-    <br>
 
-    <div class="container">
+    <div>
 
+        <a href="{% url 'index' %}">
+            <button type="button" class="btn btn-primary btn-lg">Opuść grę!</button>
+        </a>
     </div>
-    </br>
 
 {% endblock %}

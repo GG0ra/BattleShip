@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+    BattleShip
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-danger" role="alert" xmlns="http://www.w3.org/1999/html">
+
+        <h4 class="alert-heading">Witaj w pokoju gry!</h4>
+        <p>Jesteś w pokoju: <b>{{ game_code }}</b>
+        </p>
+        <hr>
+        <p class="mb-0">Możesz też opuścić pokój... i przegrać!</p>
+
+
+        <form action="{% url 'result' game_code %}" method="post" role="form">
+            {% csrf_token %}
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            {% for i in columns %}
+                <th scope="col">{{ i }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for j in rows %}
+        <tr>
+            <th scope="row">{{ j }}</th>
+            {% for i in columns %}
+                <td><input id='field' type="checkbox" name="shots" value="{{ i }}{{ j }}"></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+        <p>
+            Gotowe?
+        </p>
+        <input type="submit" value="Wyślij strzały!" class="btn btn-danger">
+        </form>
+    </div>
+
+<div>
+    <a  href="{% url 'index' %}"><button type="button" class="btn btn-primary btn-lg">Wróć!</button></a>
+</div>
+
+{% endblock %}
