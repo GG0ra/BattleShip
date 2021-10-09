@@ -8,12 +8,14 @@ from django.db.models import Model, CharField, DO_NOTHING, ForeignKey, CASCADE
 
 
 # Create your models here.
+
+
 class Select(Model):
     title = "nic"
 
+
 class Game(Model):
     title='nic'
-
 
 
 class Room(Model):
