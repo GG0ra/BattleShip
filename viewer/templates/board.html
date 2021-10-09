@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+    BattleShip
+{% endblock %}
+
+{% block content %}
+
+        {% for i in columns %}
+            <br>{% for j in rows %}
+                <input id='field' type="checkbox" name="{{ i }}{{ j }}">
+            {% endfor %}
+        {% endfor %}
+
+{% endblock %}

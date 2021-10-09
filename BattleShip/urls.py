@@ -3,7 +3,7 @@ from django.urls import path
 
 from viewer.views import SelectView, GameCreateView, GameView, GameJoinView
 
-from viewer.views import generate_demo
+from viewer.views import generate_board
 
 from accounts.views import SubmittableLoginView, SubmittablePasswordChangeForm, SignUpView
 
@@ -37,6 +37,7 @@ urlpatterns = [
     path('game/', GameCreateView.as_view(), name='create_game'),
     path('gamejoin/', GameJoinView.as_view(), name='game_join'),
     path('game/<game_code>', GameView.as_view(), name='game'),
+    path('board', generate_board, name='board'),
     path('select/', GameCreateView.as_view(), name='select'),
     path('account/', GameCreateView.as_view(), name='account')
     ]
