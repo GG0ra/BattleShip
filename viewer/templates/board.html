@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "setup.html" %}
 
 {% block title %}
     BattleShip
@@ -7,7 +7,7 @@
 {% block content %}
 
 
-<table class="table table-bordered table-condensed table-hover table-striped text-center">
+<table class="table">
     <thead>
         <tr>
             <th scope="col"></th>
@@ -22,6 +22,29 @@
             <th scope="row">{{ j }}</th>
             {% for i in columns %}
                 <td><input id='field' type="checkbox" name="{{ i }}{{ j }}"></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<br><br>
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            {% for i in columns %}
+                <th scope="col">{{ i }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for j in rows %}
+        <tr>
+            <th scope="row">{{ j }}</th>
+            {% for i in columns %}
+                <td><input id='field' type="radio" name="{{ i }}{{ j }}"></td>
             {% endfor %}
         </tr>
         {% endfor %}
