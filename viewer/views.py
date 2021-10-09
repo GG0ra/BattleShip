@@ -37,6 +37,7 @@ class SelectView(LoginRequiredMixin, ListView):
     model = Select
 
 
+
 class GameCreateView(LoginRequiredMixin, View):
     def get(self, request):
         code = "".join(random.choices(string.ascii_uppercase, k=6))
@@ -65,5 +66,5 @@ class GameView(LoginRequiredMixin, View):
             pass
         else:
             raise ('Nie możesz dołączyć, bo w pokoju jest już dwoje graczy!')
-        return render(request, template_name='game.html',
+        return render(request, template_name='setup.html',
                       context={})
