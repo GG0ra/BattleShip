@@ -21,13 +21,13 @@ from django.contrib.auth.decorators import login_required  # <=NOWE
 
 
 @login_required  # <=NOWE
-def generate_demo(request):
+def generate_board(request):
     our_get = request.GET.get('name', '')
     return render(
-        request, template_name='demo.html',
+        request, template_name='board.html',
         context={'our_get': our_get,
-                 'list': ['pierwszy', 'drugi', 'trzeci', 'czwarty'],
-                 'nasza_data': datetime.datetime.now()  # <=== ZMIANA
+                 'columns': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
+                 'rows': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
                  }
     )
 
@@ -66,5 +66,5 @@ class GameView(LoginRequiredMixin, View):
             pass
         else:
             raise ('Nie możesz dołączyć, bo w pokoju jest już dwoje graczy!')
-        return render(request, template_name='setup.html',
+        return render(request, template_name='game.html',
                       context={})
