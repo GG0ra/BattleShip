@@ -5,16 +5,17 @@
 {% endblock %}
 
 {% block content %}
+
+
     <div class="alert alert-success" role="alert" xmlns="http://www.w3.org/1999/html">
 
         <h4 class="alert-heading">Witaj w pokoju gry!</h4>
-        <p>Utwórz pole bitwy.</p>
+        <p>Utwórz pole bitwy: Podaj 6 pozycji swoich statków.</p>
         <p>Zaproś znajomego podająć ten kod: <b name="game_code">{{ game_code }}</b>
         </p>
         <hr>
-        <p class="mb-0">Możesz też opuścić pokój... i przegrać!</p>
 
-        <form action="{% url 'layout' game_code %}" method="post" role="form">
+        <form action="{% url 'layout' game_code %}" id="sectionForm" method="post" role="form">
             {% csrf_token %}
             <table class="table">
                 <thead>
@@ -30,16 +31,51 @@
                     <tr>
                         <th scope="row">{{ j }}</th>
                         {% for i in columns %}
-                            <td><input id='field' type="checkbox" name="choices" value="{{ i }}{{ j }}"></td>
+                            <td><input id='field' type="checkbox" class="check" name="choices" value="{{ i }}{{ j }}"
+                                       onclick="return limiter()"></td>
                         {% endfor %}
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
+            <div>
+                <span id=" notvalid" style="color: black"></span>
+            </div>
+            <script type="text/javascript">
+
+                function limiter() {
+                    var a = document.getElementsByName('choices');
+                    var newvar = 0;
+                    var count;
+                    for (count = 0; count < a.length; count++) {
+                        if (a[count].checked == true) {
+                            newvar = newvar + 1;
+                        }
+                    }
+                    if (newvar >= 7) {
+                        document.getElementById('notvalid').innerHTML = "** Proszę wybrać dokładnie 6 pól!"
+                        return false;
+                    }
+                }
+
+            </script>
+
             <p>
                 Gotowe?
             </p>
-            <input type="submit" value="Zatwierdź ustawienie" class="btn btn-danger">
+            <input type="submit" value="Zatwierdź ustawienie" class="submit">
+
+
+            <script type="text/javascript">
+                $(".submit").click(function () {
+                    if ($('.check').filter(':checked').length == 6) {
+                        alert("Pozycje dodane pomyślnie")
+                    } else {
+                        alert("Proszę wybrać 6 pól");
+                        return false;
+                    }
+                });
+            </script>
         </form>
     </div>
 

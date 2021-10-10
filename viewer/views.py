@@ -116,7 +116,7 @@ class ResultView(LoginRequiredMixin, View):
                     points += 1
                 if i == opp_layout.coor5:
                     points += 1
-            user_layout = Layout.objects.filter(room_number=game_code).filter(user=request.user)
+            user_layout = Layout.objects.filter(room_number=game_code).filter(user=request.user).first()
             user_layout.update(points=points)
             return render(request, template_name='result.html',
                           context={'game_code': game_code,

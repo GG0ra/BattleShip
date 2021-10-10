@@ -16,8 +16,12 @@
     <h2>{{ points }} punktów!</h2>
     {% endif %}
 
-    {% if points > 0 and points <= 4 %}
+    {% if points > 1 and points <= 4 %}
     <h2>{{ points }} punkty!</h2>
+    {% endif %}
+
+    {% if points == 1 %}
+    <h2>{{ points }} punkt!</h2>
     {% endif %}
 
 
