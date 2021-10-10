@@ -11,5 +11,14 @@
         </br>
     <h1>KONIEC GRY</h1>
 
+    <p>Uzyskano: </p>
+    {% if points == 0 or points > 4 %}
+    <h2>{{ points }} punktów!</h2>
+    {% endif %}
+
+    {% if points > 0 and points <= 4 %}
+    <h2>{{ points }} punkty!</h2>
+    {% endif %}
+
 
 {% endblock %}

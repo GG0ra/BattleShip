@@ -26,8 +26,8 @@ def generate_board(request):
     return render(
         request, template_name='board.html',
         context={'our_get': our_get,
-                 'columns': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
-                 'rows': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+                 'columns': ['A', 'B', 'C', 'D', 'E'],
+                 'rows': ['1', '2', '3', '4', '5']
                  }
     )
 
@@ -68,8 +68,8 @@ class GameView(LoginRequiredMixin, View):
         else:
             raise ('Nie możesz dołączyć, bo w pokoju jest już dwoje graczy!')
         return render(request, template_name='game.html',
-                      context={'columns': ['A', 'B', 'C', 'D', 'E', 'F'],
-                               'rows': ['1', '2', '3', '4', '5', '6'],
+                      context={'columns': ['A', 'B', 'C', 'D', 'E'],
+                               'rows': ['1', '2', '3', '4', '5'],
                                'game_code': game_code})
 
 
@@ -90,8 +90,8 @@ class ShootingView(LoginRequiredMixin, View):
         if request.method == "POST":
             game_code = request.POST.get('game_code')
         return render(request, template_name='shooting.html',
-                      context={'columns': ['A', 'B', 'C', 'D', 'E', 'F'],
-                               'rows': ['1', '2', '3', '4', '5', '6'],
+                      context={'columns': ['A', 'B', 'C', 'D', 'E'],
+                               'rows': ['1', '2', '3', '4', '5'],
                                'game_code': game_code})
 
 
@@ -100,10 +100,24 @@ class ResultView(LoginRequiredMixin, View):
 
     def post(self, request, game_code):
         if request.method == 'POST':
-            room = Layout.objects.filter(room_number=game_code).filter(user=not request.user).first()
+            opp_layout = Layout.objects.filter(room_number=game_code).exclude(user=request.user).first()
             shot_list = request.POST.getlist('shots')
             points = 0
             for i in shot_list:
-                if i in room:
+                if i == opp_layout.coor0:
                     points += 1
-            return HttpResponseRedirect(reverse('result', kwargs={'game_code': game_code}))
+                if i == opp_layout.coor1:
+                    points += 1
+                if i == opp_layout.coor2:
+                    points += 1
+                if i == opp_layout.coor3:
+                    points += 1
+                if i == opp_layout.coor4:
+                    points += 1
+                if i == opp_layout.coor5:
+                    points += 1
+            user_layout = Layout.objects.filter(room_number=game_code).filter(user=request.user)
+            user_layout.update(points=points)
+            return render(request, template_name='result.html',
+                          context={'game_code': game_code,
+                                   'points': points})
